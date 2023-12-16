@@ -7,8 +7,8 @@ export default function Index() {
   };
   return (
     <>
-      <h1 clasName="text-8xl text-center">{number}</h1>
-      <button onClick={addNumber}>Tambah Angka</button>
+      <h1 className="text-8xl text-center p-3">Title web</h1>
+      <h2 onClick={addNumber} className="bg-rosewater text-4xl text-center p-2">{number}</h2>
     </>
   );
 }

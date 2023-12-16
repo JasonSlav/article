@@ -8,9 +8,16 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-
+import style from "./tailwind.css";
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  { rel: "stylesheet", href: style },
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true },
+  {
+    href: "https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap",
+    rel: "stylesheet",
+  },
 ];
 
 export default function App() {
@@ -22,7 +29,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-black">
+      <body className="bg-base text-text latte" style={{ fontFamily: "'Poppins', sans-serif" }}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
