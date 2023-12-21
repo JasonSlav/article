@@ -5,7 +5,7 @@ type User = {
   name: string;
   email: string;
   username: string;
-  picture: string|null;
+  picture: string | null;
 };
 
 const db = singleton("prisma", () => new PrismaClient());

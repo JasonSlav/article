@@ -48,7 +48,11 @@ export function App() {
   const data = useLoaderData<typeof loader>();
   const [theme] = useTheme();
   return (
-    <html lang="en" data-theme={theme ?? ""}>
+    <html
+      lang="en"
+      data-theme={theme ?? ""}
+      className={theme !== "dark" ? "light" : "dark"}
+    >
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,7 +61,7 @@ export function App() {
         <Links />
       </head>
       <body
-        className={`bg-base text-text ${theme === "dark" ? "mocha" : "latte"}`}
+        className="bg-base text-text"
         style={{ fontFamily: "'Poppins', sans-serif" }}
       >
         <Outlet />
