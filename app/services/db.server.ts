@@ -5,10 +5,10 @@ type User = {
   name: string;
   email: string;
   username: string;
-  picture: string|null;
+  picture: string | null;
 };
 
-const db = singleton("prisma", () => new PrismaClient());
+const db = new PrismaClient();
 db.$connect();
 
 export { db };
@@ -28,6 +28,28 @@ export async function findOrCreateUser(user: User) {
   });
 }
 
-export async function getUserById(id: number) {
-  return await db.user.findUnique({ where: { id: id } });
+export async function getUser(username: string) {
+  return await db.user.findUnique({ where: { username } });
+}
+
+export async function createArticle(
+  userId: number,
+  title: string,
+  content: string
+) {
+  return await db.article.create({
+    data: {
+      title,
+      content,
+      authorId: userId,
+      published:false
+    },
+  });
+}
+
+export async function getPostById(postId: number) {
+  return await db.article.findUnique({
+    where: { id: postId },
+    include: { author: true },
+  });
 }

@@ -7,7 +7,7 @@ export let sessionStorage = createCookieSessionStorage({
     path: "/",
     httpOnly: true,
     secrets: ["s3cr3t"],
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
   },
 });
 

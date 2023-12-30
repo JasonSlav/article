@@ -16,4 +16,39 @@ model User {
   email     String    @unique
   picture   String?
   bio       String?
+  Article   Article[]
+}
+
+model Article {
+  id        Int      @id @unique @default(autoincrement())
+  title     String
+  content   String
+  published Boolean  @default(false)
+  authorId  Int
+  slug      String
+  author    User     @relation(fields: [authorId], references: [id])
+  ratings   Rating[]
+  views     View[]
+  tags      Tag[]
+}
+
+model Tag {
+  id       Int       @id @unique @default(autoincrement())
+  name     String
+  articles Article[]
+}
+
+model Rating {
+  id        Int     @id @unique @default(autoincrement())
+  rating    Int
+  userId    Int
+  article   Article @relation(fields: [articleId], references: [id])
+  articleId Int
+}
+
+model View {
+  id        Int     @id @unique @default(autoincrement())
+  userId    Int
+  article   Article @relation(fields: [articleId], references: [id])
+  articleId Int
 }
